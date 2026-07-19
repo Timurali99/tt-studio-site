@@ -168,6 +168,15 @@
         <input class="ask-input" id="emailInput" type="email" placeholder="ваша почта" autocomplete="email">
       </div>
 
+      <div class="cart-pay" id="cartPay" hidden>
+        <p class="addons-title">Как удобнее оплатить:</p>
+        <div class="addons-list" id="payList">
+          <div class="addon pay on" data-pay="Карта / СБП"><span class="addon-check">✓</span><span class="addon-name">💳 Карта / СБП</span></div>
+          <div class="addon pay" data-pay="Криптовалюта (USDT)"><span class="addon-check">✓</span><span class="addon-name">₿ Криптовалюта (USDT)</span></div>
+          <div class="addon pay" data-pay="Обсудить с менеджером"><span class="addon-check">✓</span><span class="addon-name">💬 Обсудить с менеджером</span></div>
+        </div>
+      </div>
+
       <div class="modal-actions">
         <button class="btn-raised small" id="cartClear" hidden>Очистить</button>
         <button class="btn-raised small" id="cartCheckout" hidden>Оформить в Telegram</button>

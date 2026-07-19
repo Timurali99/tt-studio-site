@@ -131,15 +131,21 @@ main > section:nth-child(n+4) { animation: page-in 1.4s .85s cubic-bezier(.22,.9
 .addon-price .free { color: var(--green); letter-spacing: .08em; }
 .addons-note { margin-top: 10px; font-size: 12.5px; font-weight: 700; color: var(--green); }
 .cart-offers { margin-top: 18px; }
+.cart-pay { margin-top: 16px; }
 .cart-email { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
 .price .free-label, .promo-when .free { color: var(--green); font-weight: 800; letter-spacing: .1em; }
 
 /* рябь от точки касания — расходящееся кольцо воды */
 .btn-raised, .order, .promo-cta, .cta-mini, .promo-code-value, .plus,
-.promo-arrow, .switch-half, .nav-links a, .modal-close, .cart {
+.promo-arrow, .switch-half, .nav-links a, .modal-close {
   position: relative; overflow: hidden;
 }
-.cart-count { top: 0; right: 0; }
+/* у корзины overflow видимый — иначе обрезался бейдж с количеством (напр. «123») */
+.cart { position: relative; overflow: visible; }
+.cart-count {
+  top: -6px; right: -10px; min-width: 18px; height: 18px; line-height: 18px;
+  padding: 0 5px; font-size: 10px; width: auto; border-radius: 999px;
+}
 .ripple {
   position: absolute; border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle,
@@ -507,6 +513,14 @@ thead th.hl { background: rgba(255, 255, 255, .35); }
 .foot-links a:hover { color: var(--text); }
 .foot-note { font-size: 12.5px; color: var(--muted); font-style: italic; }
 
+/* ---------- планшет ---------- */
+@media (max-width: 1024px) {
+  main { padding: 0 18px; }
+  .cards { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px; }
+  .promo-slide { padding: 34px 36px; }
+  .hero-panel { min-height: 280px; }
+}
+
 /* ---------- mobile ---------- */
 @media (max-width: 720px) {
   /* шапка всегда одной строкой: лого слева от «Товары», компактные отступы */
@@ -521,4 +535,19 @@ thead th.hl { background: rgba(255, 255, 255, .35); }
   .promo-arrow { display: none; }        /* на мобильном листается свайпом и точками */
   .promo-slide { padding: 28px 24px; min-height: 200px; border-radius: 28px; }
   .promo-track { border-radius: 28px; }
+  .modal-card { padding: 26px 20px 22px; border-radius: 28px; }
+  .cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card-info { padding: 14px 14px 16px; }
+  .card-title { font-size: 14px; }
+  .price { font-size: 18px; }
+  .order { font-size: 10.5px; padding: 11px 6px; letter-spacing: .1em; }
+  .plus { width: 38px; height: 38px; font-size: 17px; }
+}
+
+/* ---------- узкие телефоны ---------- */
+@media (max-width: 420px) {
+  .nav-logo-inline { font-size: 11px; padding: 8px 8px 8px 10px; }
+  .nav-links a { font-size: 9.5px; padding: 8px 6px; }
+  .cards { grid-template-columns: 1fr; }
+  .promo-title { font-size: 20px; }
 }
