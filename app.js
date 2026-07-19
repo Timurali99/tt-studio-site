@@ -300,6 +300,22 @@ document.querySelectorAll("[data-mode-link]").forEach((a) => {
   show(0); auto();
 })();
 
+// ---------- рябь от точки касания (как капля в воду) ----------
+document.addEventListener("pointerdown", (e) => {
+  const b = e.target.closest(
+    ".btn-raised, .order, .promo-cta, .cta-mini, .promo-code-value, .plus, .promo-arrow, .switch-half, .nav-links a, .modal-close, .cart");
+  if (!b) return;
+  const rect = b.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2.4;
+  const r = document.createElement("span");
+  r.className = "ripple";
+  r.style.width = r.style.height = `${size}px`;
+  r.style.left = `${e.clientX - rect.left - size / 2}px`;
+  r.style.top = `${e.clientY - rect.top - size / 2}px`;
+  b.appendChild(r);
+  setTimeout(() => r.remove(), 850);
+});
+
 // ---------- assistant ----------
 el("askForm").addEventListener("submit", (e) => {
   e.preventDefault();
