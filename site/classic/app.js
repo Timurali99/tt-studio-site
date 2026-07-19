@@ -366,6 +366,24 @@ el("cards").addEventListener("click", (e) => {
   openProduct(card.dataset.id);
 });
 
+// ---------- тема день/ночь: клиент выбирает сам, кнопкой в шапке ----------
+function setTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  el("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
+  try { localStorage.setItem("tt-theme", t); } catch (_) {}
+}
+setTheme((() => {
+  try {
+    const saved = localStorage.getItem("tt-theme");
+    if (saved === "dark" || saved === "light") return saved;
+  } catch (_) {}
+  const h = new Date().getHours();
+  return h >= 7 && h < 19 ? "light" : "dark";
+})());
+el("themeBtn").addEventListener("click", () => {
+  setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+});
+
 // ---------- переключатель ----------
 el("halfGoods").addEventListener("click", () => render("day"));
 el("halfServices").addEventListener("click", () => render("night"));

@@ -3,6 +3,9 @@
 // ---------- фон: медленный «дождь» из мелких иероглифов ----------
 // Требование: глифы мелкие, текут медленно, при желании читаются.
 (() => {
+  // в ночной теме глифы светлые с красноватым отливом (как на старом сайте)
+  const GLYPH_RGB = () => document.documentElement.getAttribute("data-theme") === "dark"
+    ? "215, 180, 178" : "90, 96, 108";
   const POOL = "道令号変信起能言系術網録知財機車時電匠手品心価導礼義徳華宝助昇音鍵包".split("");
   const cv = document.getElementById("glyphrain");
   if (!cv) return;
@@ -45,7 +48,7 @@
         const y = r * ROW_H + c.y;
         // боковой волновой дрейф: колонка плавно «перетекает», волна бежит по вертикали
         const x = c.x + Math.sin(t + c.ph + y * 0.008) * c.amp;
-        ctx.fillStyle = `rgba(90, 96, 108, ${c.a * breathe})`;
+        ctx.fillStyle = `rgba(${GLYPH_RGB()}, ${c.a * breathe})`;
         ctx.fillText(c.glyphs[r], x, y);
       }
       // редкая смена одного глифа, чтобы «жило», но оставалось читаемым
