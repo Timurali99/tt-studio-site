@@ -349,7 +349,7 @@ el("askForm").addEventListener("submit", (e) => {
       v: 0.08 + Math.random() * 0.18,          // медленное течение
       a: 0.03 + Math.random() * 0.05,          // едва заметная плотность
       ph: Math.random() * Math.PI * 2,         // фаза волны — у каждой колонки своя
-      amp: 3 + Math.random() * 5,              // амплитуда бокового «перетекания»
+      amp: 6 + Math.random() * 9,              // амплитуда бокового «перетекания»
       glyphs: Array.from({ length: Math.ceil(innerHeight / ROW_H) + 2 },
         () => POOL[(Math.random() * POOL.length) | 0]),
     }));
@@ -360,7 +360,7 @@ el("askForm").addEventListener("submit", (e) => {
   function draw() {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     ctx.font = `500 ${FONT}px "Hiragino Sans","Noto Sans JP",sans-serif`;
-    t += 0.004;                                 // общее «время» жидкости
+    t += 0.006;                                 // общее «время» жидкости
     for (const c of cols) {
       c.y += c.v;
       if (c.y >= ROW_H) {              // бесшовный сдвиг колонки на один ряд вниз

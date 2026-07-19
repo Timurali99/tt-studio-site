@@ -62,23 +62,22 @@ a { color: inherit; text-decoration: none; }
   75%      { border-radius: 54% 46% 42% 58% / 48% 52% 45% 55%; }
 }
 @keyframes liquid-pill {
-  0%, 100% { border-radius: 34px 42px 38px 44px / 40px 34px 44px 36px; }
-  25%      { border-radius: 44px 34px 42px 36px / 36px 44px 34px 42px; }
-  50%      { border-radius: 38px 44px 34px 42px / 44px 38px 42px 34px; }
-  75%      { border-radius: 42px 36px 44px 38px / 34px 42px 36px 44px; }
+  0%, 100% { border-radius: 26px 48px 32px 52px / 44px 28px 50px 30px; }
+  20%      { border-radius: 50px 28px 46px 30px / 30px 50px 28px 46px; }
+  40%      { border-radius: 32px 50px 26px 48px / 48px 32px 46px 28px; }
+  60%      { border-radius: 48px 30px 52px 28px / 28px 46px 30px 50px; }
+  80%      { border-radius: 30px 46px 28px 50px / 50px 30px 48px 32px; }
 }
 @keyframes liquid-sheen {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
+  0%, 100% { background-position: 0% 40%; }
+  33%      { background-position: 70% 60%; }
+  66%      { background-position: 100% 45%; }
 }
 .media-well, .phil-ico { animation: liquid-blob 7s ease-in-out infinite; }
 .plus, .promo-arrow, .modal-close { animation: liquid-blob 9s ease-in-out infinite 1.5s; }
 .cart { animation: liquid-blob 8s ease-in-out infinite 3s; }
 
-/* водное преломление: кнопки и их буквы «плывут», как сквозь стекло (Apple liquid glass) */
-.btn-raised, .order, .promo-cta, .cta-mini, .promo-code-value, .switch-half, .nav-logo-inline {
-  filter: url(#liquidglass);
-}
+/* (SVG-преломление букв убрано: растровый фильтр давал видимые пиксели) */
 
 /* рябь от точки касания — расходящееся кольцо воды */
 .btn-raised, .order, .promo-cta, .cta-mini, .promo-code-value, .plus,
@@ -104,7 +103,7 @@ a { color: inherit; text-decoration: none; }
 .btn-raised, .order, .promo-cta, .cta-mini, .promo-code-value {
   background: linear-gradient(120deg, #eceef1, #dfe2e7, #e9ebee, #dcdfe4, #eceef1);
   background-size: 320% 320%;
-  animation: liquid-pill 10s ease-in-out infinite, liquid-sheen 9s ease-in-out infinite;
+  animation: liquid-pill 7s ease-in-out infinite, liquid-sheen 6s ease-in-out infinite;
 }
 .pill {
   background: linear-gradient(120deg, #e9ebee, #e2e4e9, #edeff2, #e2e4e9, #e9ebee);
