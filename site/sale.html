@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Скидки — T&T Studio</title>
+  <meta name="description" content="Все текущие скидки и акции T&T Studio на одной странице.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='84'>∞</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="glyphrain" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <nav class="nav-links pill nav-single">
+      <a class="nav-logo-inline" href="index.html">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
+      <a href="index.html">Каталог</a>
+      <a href="guides.html">Гайды</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="catalog">
+      <h2>Скидки сейчас</h2>
+      <p class="section-lead">Всё, на что прямо сейчас действует скидка или акция. Нажмите — откроется карточка.</p>
+      <p class="eyebrow"><span class="dot green"></span><span>ВЫГОДА НЕДЕЛИ</span></p>
+      <div class="cards" id="cards"></div>
+
+      <h2 style="margin-top:70px">Акции</h2>
+      <div class="phil-rows" id="promoList" style="margin-top:30px"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-logo">T<span class="inf">∞</span>T&nbsp;STUDIO</div>
+    <nav class="foot-links"><a href="index.html">На главную</a></nav>
+    <p class="foot-note">Мастерская и разработка. Тихо, точно, в срок.</p>
+  </footer>
+
+  <script>
+    const money = (n) => Math.round(n).toLocaleString("ru-RU");
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const salePrice = (it) => it.sale ? Math.round(it.p * (1 - it.sale / 100)) : it.p;
+
+    fetch("catalog.json").then((r) => r.json()).then((c) => {
+      const all = [...c.day.items, ...c.night.items, ...c.guides];
+      const discounted = all.filter((i) => (i.sale || 0) > 0);
+      document.getElementById("cards").innerHTML = discounted.map((it, i) => `
+        <a class="card" href="index.html?item=${it.id}" style="--i:${i}">
+          <div class="card-media">
+            <span class="sale-badge">−${it.sale}%</span>
+            <span class="media-kj" aria-hidden="true">${it.kj}</span>
+            <span class="media-well"><span class="media-emoji">${it.e}</span></span>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">${esc(it.t)}</h3>
+            <p class="card-meta">${esc(it.m)}</p>
+            <div class="price"><span class="price-old">${money(it.p)} ₽</span>${it.from ? '<span class="from">от</span>' : ""}${money(salePrice(it))}<span class="rub">₽</span></div>
+            <div class="card-actions"><span class="order">Открыть</span></div>
+          </div>
+        </a>`).join("");
+    });
+
+    fetch("promos.json").then((r) => r.json()).then((promos) => {
+      document.getElementById("promoList").innerHTML = promos.map((p) => `
+        <a class="phil-row pill-soft" href="${p.product ? `index.html?item=${p.product}` : "index.html#catalog"}">
+          <span class="phil-ico">${p.kj || "令"}</span>
+          <div>
+            <h3>${esc(p.title)}</h3>
+            <p>${esc(p.text || "")} <b>${esc(p.days || "")} · ${esc(p.dates || "")}</b></p>
+          </div>
+        </a>`).join("");
+    });
+  </script>
+  <script src="glyphs.js"></script>
+</body>
+</html>
