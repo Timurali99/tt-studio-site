@@ -39,6 +39,10 @@
   </footer>
 
   <script>
+    try {
+      const t = localStorage.getItem("tt-theme") || ((new Date().getHours() >= 7 && new Date().getHours() < 19) ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (_) {}
     const money = (n) => Math.round(n).toLocaleString("ru-RU");
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
     fetch("catalog.json").then((r) => r.json()).then((c) => {

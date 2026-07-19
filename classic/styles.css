@@ -418,7 +418,7 @@ h2 {
   border-radius: 999px; background: var(--panel); box-shadow: var(--raise-sm);
   transition: transform .3s cubic-bezier(.4, 0, .2, 1);
 }
-html[data-mode="night"] .switch-thumb { transform: translateX(100%); }
+html[data-theme="dark"] .switch-thumb { transform: translateX(100%); }
 
 .eyebrow {
   display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 34px;
@@ -557,7 +557,7 @@ thead th.hl { background: rgba(255, 255, 255, .35); }
 
 /* ==== classic-фишка: переключение Товары/Услуги меняет и цветовую тему ====
    Товары = светлый неоморф (как на основном сайте), Услуги = тёмная ночь. */
-html[data-mode="night"] {
+html[data-theme="dark"] {
   --bg: #1d1f24;
   --bg-deep: #15171b;
   --panel: #23262c;
@@ -566,50 +566,50 @@ html[data-mode="night"] {
   --shadow-dark: rgba(0, 0, 0, .6);
   --shadow-light: rgba(255, 255, 255, .05);
 }
-html[data-mode="night"] body {
+html[data-theme="dark"] body {
   background: radial-gradient(120% 90% at 20% 0%, #26292f 0%, #1d1f24 45%, #15171b 100%) fixed;
   color: var(--text);
 }
-html[data-mode="night"] .pill,
-html[data-mode="night"] .switch-thumb {
+html[data-theme="dark"] .pill,
+html[data-theme="dark"] .switch-thumb {
   background: linear-gradient(120deg, #262930, #1f2227, #2a2d34, #1f2227, #262930);
   background-size: 320% 320%;
 }
-html[data-mode="night"] .btn-raised,
-html[data-mode="night"] .order,
-html[data-mode="night"] .promo-cta,
-html[data-mode="night"] .cta-mini,
-html[data-mode="night"] .promo-code-value,
-html[data-mode="night"] .plus,
-html[data-mode="night"] .promo-arrow,
-html[data-mode="night"] .modal-close,
-html[data-mode="night"] .cart,
-html[data-mode="night"] .cart-item-remove {
+html[data-theme="dark"] .btn-raised,
+html[data-theme="dark"] .order,
+html[data-theme="dark"] .promo-cta,
+html[data-theme="dark"] .cta-mini,
+html[data-theme="dark"] .promo-code-value,
+html[data-theme="dark"] .plus,
+html[data-theme="dark"] .promo-arrow,
+html[data-theme="dark"] .modal-close,
+html[data-theme="dark"] .cart,
+html[data-theme="dark"] .cart-item-remove {
   background: linear-gradient(120deg, #2a2d34, #22252b, #2e3138, #22252b, #2a2d34);
   background-size: 320% 320%;
   color: var(--text);
 }
-html[data-mode="night"] .hero-panel,
-html[data-mode="night"] .promo-slide,
-html[data-mode="night"] .assistant-panel {
+html[data-theme="dark"] .hero-panel,
+html[data-theme="dark"] .promo-slide,
+html[data-theme="dark"] .assistant-panel {
   background: linear-gradient(135deg, #26292f, #1f2227, #282b31, #1e2126, #26292f);
   background-size: 300% 300%;
 }
-html[data-mode="night"] .card-media,
-html[data-mode="night"] .modal-media {
+html[data-theme="dark"] .card-media,
+html[data-theme="dark"] .modal-media {
   background: linear-gradient(145deg, #26292f, #1e2126);
 }
-html[data-mode="night"] .hero h1 { color: #c9ccd4; }
-html[data-mode="night"] .hero h1 em { color: #f2f3f6; }
-html[data-mode="night"] .nav-links a { color: #a7abb6; }
-html[data-mode="night"] .nav-links a:hover { color: var(--text); }
-html[data-mode="night"] .sale-badge { color: #ff6b63; }
-html[data-mode="night"] .media-kj,
-html[data-mode="night"] .promo-kj { color: rgba(220, 224, 232, .07); }
-html[data-mode="night"] .cart-count { background: #ff6b63; color: #fff; }
-html[data-mode="night"] td.hl,
-html[data-mode="night"] thead th.hl { background: rgba(255, 255, 255, .05); }
-html[data-mode="night"] .ripple {
+html[data-theme="dark"] .hero h1 { color: #c9ccd4; }
+html[data-theme="dark"] .hero h1 em { color: #f2f3f6; }
+html[data-theme="dark"] .nav-links a { color: #a7abb6; }
+html[data-theme="dark"] .nav-links a:hover { color: var(--text); }
+html[data-theme="dark"] .sale-badge { color: #ff6b63; }
+html[data-theme="dark"] .media-kj,
+html[data-theme="dark"] .promo-kj { color: rgba(220, 224, 232, .07); }
+html[data-theme="dark"] .cart-count { background: #ff6b63; color: #fff; }
+html[data-theme="dark"] td.hl,
+html[data-theme="dark"] thead th.hl { background: rgba(255, 255, 255, .05); }
+html[data-theme="dark"] .ripple {
   background: radial-gradient(circle,
     rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .25) 42%,
     rgba(255, 107, 99, .25) 52%, rgba(255, 255, 255, .12) 62%, transparent 72%);

@@ -4,7 +4,7 @@
 // Требование: глифы мелкие, текут медленно, при желании читаются.
 (() => {
   // в ночной теме глифы светлые с красноватым отливом (как на старом сайте)
-  const GLYPH_RGB = () => document.documentElement.getAttribute("data-mode") === "night"
+  const GLYPH_RGB = () => document.documentElement.getAttribute("data-theme") === "dark"
     ? "215, 180, 178" : "90, 96, 108";
   const POOL = "道令号変信起能言系術網録知財機車時電匠手品心価導礼義徳華宝助昇音鍵包".split("");
   const cv = document.getElementById("glyphrain");
