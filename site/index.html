@@ -32,11 +32,30 @@
       <p class="hero-lead">Верните себе время. T&T Studio — мастерская вещей ручной работы
         и разработка под ключ: Telegram-боты, AI-ассистенты, автоматизация и веб-платформы.</p>
       <a class="btn-raised" href="#catalog">Открыть каталог</a>
+    </section>
 
-      <div class="hero-panel">
-        <span class="hero-glyph">∞</span>
-        <p class="hero-panel-caption"><em>Мастерская × Разработка</em></p>
+    <section class="promo" id="promo" aria-label="Акции">
+      <div class="promo-slider">
+        <button class="promo-arrow" id="promoPrev" aria-label="Предыдущая акция">‹</button>
+        <div class="promo-track" id="promoTrack"></div>
+        <button class="promo-arrow" id="promoNext" aria-label="Следующая акция">›</button>
       </div>
+      <div class="promo-dots" id="promoDots"></div>
+    </section>
+
+    <section class="catalog" id="catalog">
+      <h2 id="catTitle">Каталог</h2>
+      <p class="section-lead" id="stageLead">Товары мастерской и услуги под ключ.</p>
+
+      <div class="switch" role="tablist" aria-label="Товары или услуги">
+        <button class="switch-half" id="halfGoods" role="tab" aria-selected="false">Товары</button>
+        <span class="switch-thumb" id="switchThumb" aria-hidden="true"></span>
+        <button class="switch-half" id="halfServices" role="tab" aria-selected="true">Услуги</button>
+      </div>
+
+      <p class="eyebrow"><span class="dot"></span><span id="eyebrowTag">РАЗРАБОТКА</span></p>
+
+      <div class="cards" id="cards"></div>
     </section>
 
     <section class="philosophy">
@@ -58,21 +77,11 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="catalog" id="catalog">
-      <h2 id="catTitle">Каталог</h2>
-      <p class="section-lead" id="stageLead">Товары мастерской и услуги под ключ.</p>
-
-      <div class="switch" role="tablist" aria-label="Товары или услуги">
-        <button class="switch-half" id="halfGoods" role="tab" aria-selected="false">Товары</button>
-        <span class="switch-thumb" id="switchThumb" aria-hidden="true"></span>
-        <button class="switch-half" id="halfServices" role="tab" aria-selected="true">Услуги</button>
+      <div class="hero-panel">
+        <span class="hero-glyph">∞</span>
+        <p class="hero-panel-caption"><em>Мастерская × Разработка</em></p>
       </div>
-
-      <p class="eyebrow"><span class="dot"></span><span id="eyebrowTag">РАЗРАБОТКА</span></p>
-
-      <div class="cards" id="cards"></div>
     </section>
 
     <section class="assistant" id="assistant">
