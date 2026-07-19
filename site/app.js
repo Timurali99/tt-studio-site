@@ -60,7 +60,7 @@ async function loadConfig() {
   } catch (_) { /* defaults */ }
   const ch = tme(cfg.channelUsername), mg = tme(cfg.managerUsername);
   if (ch) el("footChannel").href = ch;
-  if (mg) for (const id of ["footManager", "navManager", "ctaManager"]) el(id).href = mg;
+  if (mg) for (const id of ["footManager", "ctaManager"]) el(id).href = mg;
 }
 
 function escapeHtml(s) {
@@ -332,25 +332,32 @@ el("askForm").addEventListener("submit", (e) => {
       y: Math.random() * ROW_H,
       v: 0.08 + Math.random() * 0.18,          // медленное течение
       a: 0.03 + Math.random() * 0.05,          // едва заметная плотность
+      ph: Math.random() * Math.PI * 2,         // фаза волны — у каждой колонки своя
+      amp: 3 + Math.random() * 5,              // амплитуда бокового «перетекания»
       glyphs: Array.from({ length: Math.ceil(innerHeight / ROW_H) + 2 },
         () => POOL[(Math.random() * POOL.length) | 0]),
     }));
   }
 
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let t = 0;
   function draw() {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     ctx.font = `500 ${FONT}px "Hiragino Sans","Noto Sans JP",sans-serif`;
+    t += 0.004;                                 // общее «время» жидкости
     for (const c of cols) {
       c.y += c.v;
       if (c.y >= ROW_H) {              // бесшовный сдвиг колонки на один ряд вниз
         c.y -= ROW_H;
         c.glyphs.unshift(c.glyphs.pop());
       }
+      const breathe = 0.75 + 0.25 * Math.sin(t * 2 + c.ph);   // дыхание прозрачности
       for (let r = 0; r < c.glyphs.length; r++) {
         const y = r * ROW_H + c.y;
-        ctx.fillStyle = `rgba(90, 96, 108, ${c.a})`;
-        ctx.fillText(c.glyphs[r], c.x, y);
+        // боковой волновой дрейф: колонка плавно «перетекает», волна бежит по вертикали
+        const x = c.x + Math.sin(t + c.ph + y * 0.008) * c.amp;
+        ctx.fillStyle = `rgba(90, 96, 108, ${c.a * breathe})`;
+        ctx.fillText(c.glyphs[r], x, y);
       }
       // редкая смена одного глифа, чтобы «жило», но оставалось читаемым
       if (Math.random() < 0.004) {

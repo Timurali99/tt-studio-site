@@ -32,17 +32,57 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
+/* ---------- «жидкость»: всё живое перетекает ---------- */
+.btn-raised, .order, .plus, .promo-arrow, .promo-cta, .switch-half,
+.nav-links a, .cart, .promo-dot, .modal-close, .promo-code-value,
+.cart-item-remove, .ask-input, .phil-ico {
+  transition:
+    background .45s ease,
+    color .3s ease,
+    box-shadow .45s ease,
+    border-radius .7s cubic-bezier(.34, 1.3, .5, 1),
+    transform .5s cubic-bezier(.34, 1.56, .64, 1);
+}
+.nav-links a:hover, .promo-cta:hover, .order:hover, .promo-code-value:hover {
+  background: var(--bg-deep); box-shadow: var(--inset); color: var(--text);
+}
+.btn-raised:hover {
+  background: linear-gradient(145deg, #dfe1e6, #d7dade);
+  transform: translateY(-2px) scale(1.02);
+}
+.plus:hover { transform: rotate(90deg) scale(1.1); background: var(--bg-deep); box-shadow: var(--inset); }
+.promo-arrow:hover, .modal-close:hover, .cart:hover { background: var(--bg-deep); box-shadow: var(--inset); }
+.cart:hover { border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%; }
+
+@keyframes liquid-blob {
+  0%, 100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+  25%      { border-radius: 58% 42% 46% 54% / 45% 57% 43% 55%; }
+  50%      { border-radius: 45% 55% 60% 40% / 55% 45% 52% 48%; }
+  75%      { border-radius: 54% 46% 42% 58% / 48% 52% 45% 55%; }
+}
+.card:hover .media-well, .modal-media:hover .media-well { animation: liquid-blob 4.5s ease-in-out infinite; }
+.phil-row:hover .phil-ico { animation: liquid-blob 4.5s ease-in-out infinite; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.hero-glyph { animation: floaty 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-glyph, .card:hover .media-well, .phil-row:hover .phil-ico { animation: none; }
+}
+
 /* ---------- nav ---------- */
 .nav {
   position: sticky; top: 16px; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  display: flex; justify-content: flex-start; align-items: center; gap: 12px;
   max-width: 1100px; margin: 0 auto; padding: 8px 16px;
 }
 .pill {
   background: var(--panel); border-radius: 999px; box-shadow: var(--raise-sm);
 }
 .inf { color: var(--muted); font-weight: 400; }
-.nav-single { margin: 0 auto; }
+.nav-single { margin: 0; }
 .nav-logo-inline {
   padding: 9px 18px 9px 20px; font-weight: 800; letter-spacing: .12em; font-size: 14px;
   border-right: 1px solid rgba(140, 145, 155, .25); margin-right: 6px;
