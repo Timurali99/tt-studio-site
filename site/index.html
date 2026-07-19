@@ -128,6 +128,12 @@
       <p class="eyebrow left"><span class="dot"></span><span id="pmTag"></span></p>
       <h3 class="modal-title" id="pmTitle"></h3>
       <p class="card-meta" id="pmMeta"></p>
+      <p class="modal-desc" id="pmDesc"></p>
+      <div class="addons" id="pmAddons" hidden>
+        <p class="addons-title">Соберите пакет — вместе дешевле:</p>
+        <div class="addons-list" id="pmAddonsList"></div>
+        <p class="addons-note" id="pmAddonsNote" hidden>Пакет из 3+ позиций — скидка 10% на всё ✓</p>
+      </div>
       <div class="modal-price" id="pmPrice"></div>
       <div class="promo-code" id="pmPromo" hidden>
         <span class="promo-code-label">Промокод по акции:</span>
@@ -151,6 +157,17 @@
         <span>Итого:</span><b id="cartSum"></b>
       </div>
       <p class="cart-empty" id="cartEmpty">Корзина пока пуста — добавьте товары кнопкой «+»</p>
+
+      <div class="cart-offers" id="cartOffers">
+        <p class="addons-title">Ещё предложения:</p>
+        <div class="addons-list" id="cartOffersList"></div>
+      </div>
+
+      <div class="cart-email" id="cartEmail" hidden>
+        <label class="addons-title" for="emailInput">Куда отправить гайды:</label>
+        <input class="ask-input" id="emailInput" type="email" placeholder="ваша почта" autocomplete="email">
+      </div>
+
       <div class="modal-actions">
         <button class="btn-raised small" id="cartClear" hidden>Очистить</button>
         <button class="btn-raised small" id="cartCheckout" hidden>Оформить в Telegram</button>
