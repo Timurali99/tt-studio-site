@@ -15,24 +15,16 @@
   <canvas id="glyphrain" aria-hidden="true"></canvas>
 
   <header class="nav">
-    <a class="nav-logo pill" href="#top">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
-    <nav class="nav-links pill">
+    <nav class="nav-links pill nav-single">
+      <a class="nav-logo-inline" href="#top">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
       <a href="#catalog" data-mode-link="day">Товары</a>
       <a href="#catalog" data-mode-link="night">Услуги</a>
-      <a href="#assistant">Ассистент</a>
       <button class="cart" id="cartBtn" aria-label="Корзина">🛒<span class="cart-count" id="cartCount" hidden>0</span></button>
       <a class="cta-mini" id="navManager" href="#" target="_blank" rel="noopener">Написать нам</a>
     </nav>
   </header>
 
   <main id="top">
-
-    <section class="hero">
-      <h1>Вещи с историей.<br><em>Технологии для бизнеса.</em></h1>
-      <p class="hero-lead">Верните себе время. T&T Studio — мастерская вещей ручной работы
-        и разработка под ключ: Telegram-боты, AI-ассистенты, автоматизация и веб-платформы.</p>
-      <a class="btn-raised" href="#catalog">Открыть каталог</a>
-    </section>
 
     <section class="promo" id="promo" aria-label="Акции">
       <div class="promo-slider">
@@ -129,6 +121,43 @@
     </nav>
     <p class="foot-note">Мастерская и разработка. Тихо, точно, в срок.</p>
   </footer>
+
+  <div class="overlay" id="productModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <button class="modal-close" id="pmClose" aria-label="Закрыть">✕</button>
+      <div class="modal-media"><span class="modal-kj" id="pmKj"></span><span class="media-well big"><span class="media-emoji" id="pmEmoji"></span></span></div>
+      <p class="eyebrow left"><span class="dot"></span><span id="pmTag"></span></p>
+      <h3 class="modal-title" id="pmTitle"></h3>
+      <p class="card-meta" id="pmMeta"></p>
+      <div class="modal-price" id="pmPrice"></div>
+      <div class="promo-code" id="pmPromo" hidden>
+        <span class="promo-code-label">Промокод по акции:</span>
+        <button class="promo-code-value" id="pmPromoCode" title="Нажмите, чтобы скопировать"></button>
+        <span class="promo-code-hint" id="pmPromoHint">нажмите — скопируется</span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-raised small" id="pmAdd">В корзину</button>
+        <a class="btn-raised small" id="pmOrder" href="#" target="_blank" rel="noopener">Заказать</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="cartDrawer" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <button class="modal-close" id="cartClose" aria-label="Закрыть">✕</button>
+      <p class="eyebrow left"><span class="dot green"></span>КОРЗИНА</p>
+      <h3 class="modal-title" id="cartTitle">Ваш заказ</h3>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-total" id="cartTotal" hidden>
+        <span>Итого:</span><b id="cartSum"></b>
+      </div>
+      <p class="cart-empty" id="cartEmpty">Корзина пока пуста — добавьте товары кнопкой «+»</p>
+      <div class="modal-actions">
+        <button class="btn-raised small" id="cartClear" hidden>Очистить</button>
+        <button class="btn-raised small" id="cartCheckout" hidden>Оформить в Telegram</button>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
