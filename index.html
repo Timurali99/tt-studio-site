@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T&T Studio — каталог</title>
+  <meta name="description" content="T&T Studio — товары с историей и услуги под ключ: Telegram-боты, AI-ассистенты, автоматизация и веб-платформы.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='84'>∞</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav-logo pill" href="#top">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
+    <nav class="nav-links pill">
+      <a href="#catalog" data-mode-link="day">Товары</a>
+      <a href="#catalog" data-mode-link="night">Услуги</a>
+      <a href="#assistant">Ассистент</a>
+      <button class="cart" id="cartBtn" aria-label="Корзина">🛒<span class="cart-count" id="cartCount" hidden>0</span></button>
+      <a class="cta-mini" id="navManager" href="#" target="_blank" rel="noopener">Написать нам</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <h1>Вещи с историей.<br><em>Технологии для бизнеса.</em></h1>
+      <p class="hero-lead">Верните себе время. T&T Studio — мастерская вещей ручной работы
+        и разработка под ключ: Telegram-боты, AI-ассистенты, автоматизация и веб-платформы.</p>
+      <a class="btn-raised" href="#catalog">Открыть каталог</a>
+
+      <div class="hero-panel">
+        <span class="hero-glyph">∞</span>
+        <p class="hero-panel-caption"><em>Мастерская × Разработка</em></p>
+      </div>
+    </section>
+
+    <section class="philosophy">
+      <h2>Суть в каждой детали</h2>
+      <p class="section-lead">Инструменты не должны требовать вашего внимания — они должны работать на вас.</p>
+      <div class="phil-rows">
+        <div class="phil-row pill-soft">
+          <span class="phil-ico">匠</span>
+          <div>
+            <h3>Ремесло вместо конвейера</h3>
+            <p>Каждая вещь в «Товарах» сделана или отобрана вручную — кожа, техника, детали с характером.</p>
+          </div>
+        </div>
+        <div class="phil-row pill-soft">
+          <span class="phil-ico">道</span>
+          <div>
+            <h3>Решение вместо шаблона</h3>
+            <p>Каждая услуга в «Разработке» собирается под задачу клиента — со сроком и ценой до старта.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalog">
+      <h2 id="catTitle">Каталог</h2>
+      <p class="section-lead" id="stageLead">Товары мастерской и услуги под ключ.</p>
+
+      <div class="switch" role="tablist" aria-label="Товары или услуги">
+        <button class="switch-half" id="halfGoods" role="tab" aria-selected="false">Товары</button>
+        <span class="switch-thumb" id="switchThumb" aria-hidden="true"></span>
+        <button class="switch-half" id="halfServices" role="tab" aria-selected="true">Услуги</button>
+      </div>
+
+      <p class="eyebrow"><span class="dot"></span><span id="eyebrowTag">РАЗРАБОТКА</span></p>
+
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="assistant" id="assistant">
+      <div class="assistant-panel">
+        <p class="eyebrow"><span class="dot green"></span>T&amp;T АССИСТЕНТ</p>
+        <p class="assistant-quote">«Расскажите, что вам нужно — предложу решение, срок и цену.»</p>
+        <form class="ask" id="askForm">
+          <input class="ask-input" id="askInput" type="text" placeholder="Например: нужен бот для записи клиентов…" autocomplete="off">
+          <button class="btn-raised small" type="submit">Спросить</button>
+        </form>
+        <p class="ask-hint" id="askHint" hidden>Вопрос скопирован — вставьте его в чат Telegram.</p>
+      </div>
+    </section>
+
+    <section class="compare">
+      <h2>Почему T&amp;T Studio</h2>
+      <div class="table-panel">
+        <table>
+          <thead>
+            <tr><th>Критерий</th><th>Обычный подрядчик</th><th class="hl">T&amp;T Studio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Подход</td><td>Шаблонные решения</td><td class="hl">Под задачу клиента</td></tr>
+            <tr><td>Сроки</td><td>Месяцы и переносы</td><td class="hl">8–25 дней, фиксируются до старта</td></tr>
+            <tr><td>Общение</td><td>Через менеджеров</td><td class="hl">Напрямую с разработчиком</td></tr>
+            <tr><td>Результат</td><td>Сдал и забыл</td><td class="hl">Поддержка после запуска</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Начните свой проект</h2>
+      <p class="section-lead">Идея заслуживает исполнения. Напишите — обсудим задачу и срок в тот же день.</p>
+      <a class="btn-raised" id="ctaManager" href="#" target="_blank" rel="noopener">Обсудить проект</a>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="foot-logo">T<span class="inf">∞</span>T&nbsp;STUDIO</div>
+    <nav class="foot-links">
+      <a id="footChannel" href="#" target="_blank" rel="noopener">Telegram-канал</a>
+      <a id="footManager" href="#" target="_blank" rel="noopener">Написать нам</a>
+    </nav>
+    <p class="foot-note">Мастерская и разработка. Тихо, точно, в срок.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
