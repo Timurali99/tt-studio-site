@@ -23,9 +23,11 @@
 }
 .nav, main, .foot { position: relative; z-index: 1; }
 html { scroll-behavior: smooth; }
+html { background: var(--bg-deep); }
 body {
   font-family: "Inter", -apple-system, sans-serif;
-  background: radial-gradient(120% 90% at 20% 0%, #edeef1 0%, var(--bg) 45%, var(--bg-deep) 100%);
+  /* fixed — иначе на длинной странице градиент «уезжал» и низ был другого цвета */
+  background: radial-gradient(120% 90% at 20% 0%, #edeef1 0%, var(--bg) 45%, var(--bg-deep) 100%) fixed;
   color: var(--text);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -189,7 +191,7 @@ main > section:nth-child(n+4) { animation: page-in 1.4s .85s cubic-bezier(.22,.9
 /* ---------- nav ---------- */
 .nav {
   position: sticky; top: 16px; z-index: 50;
-  display: flex; justify-content: flex-start; align-items: center; gap: 12px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
   max-width: 1100px; margin: 0 auto; padding: 8px 16px;
 }
 .pill {
@@ -266,6 +268,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
   position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; border-radius: 50%;
   border: 0; cursor: pointer; background: var(--panel); box-shadow: var(--raise-sm);
   font-size: 15px; color: var(--text);
+  z-index: 10;               /* поверх фото и контента — иначе крестик «пропадал» */
 }
 .modal-close:active { box-shadow: var(--inset); }
 .modal-media {

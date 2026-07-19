@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Гайды — T&T Studio</title>
+  <meta name="description" content="PDF-гайды T&T Studio: переезд во Вьетнам — бесплатный вводный и полный за 99 ₽.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='84'>∞</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="glyphrain" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <nav class="nav-links pill nav-single">
+      <a class="nav-logo-inline" href="index.html">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
+      <a href="index.html">Каталог</a>
+      <a href="sale.html">Скидки</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="catalog">
+      <h2>Гайды</h2>
+      <p class="section-lead">Наши PDF-гайды. Оплата — 99 ₽, отправляем на почту.
+        Покупаете полный — бесплатный идёт в комплекте.</p>
+      <p class="eyebrow"><span class="dot green"></span><span>ВЬЕТНАМ</span></p>
+      <div class="cards" id="cards" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-logo">T<span class="inf">∞</span>T&nbsp;STUDIO</div>
+    <nav class="foot-links"><a href="index.html">На главную</a></nav>
+    <p class="foot-note">Мастерская и разработка. Тихо, точно, в срок.</p>
+  </footer>
+
+  <script>
+    const money = (n) => Math.round(n).toLocaleString("ru-RU");
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    fetch("catalog.json").then((r) => r.json()).then((c) => {
+      document.getElementById("cards").innerHTML = c.guides.map((it, i) => `
+        <a class="card" href="index.html?item=${it.id}" style="--i:${i}">
+          <div class="card-media">
+            ${it.p === 0 ? '<span class="sale-badge" style="color:#2e9e4f">FREE</span>' : ""}
+            <span class="media-kj" aria-hidden="true">${it.kj}</span>
+            <span class="media-well"><span class="media-emoji">${it.e}</span></span>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">${esc(it.t)}</h3>
+            <p class="card-meta">${esc(it.m)}</p>
+            <p class="modal-desc">${esc(it.d)}</p>
+            <div class="price">${it.p === 0 ? '<span class="free-label">FREE</span>' : `${money(it.p)}<span class="rub">₽</span>`}</div>
+            <div class="card-actions"><span class="order">${it.p === 0 ? "Получить бесплатно" : "Купить за 99 ₽"}</span></div>
+          </div>
+        </a>`).join("");
+    });
+  </script>
+  <script src="glyphs.js"></script>
+</body>
+</html>
