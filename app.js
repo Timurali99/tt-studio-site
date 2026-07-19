@@ -88,6 +88,19 @@ async function loadConfig() {
   if (mg) for (const id of ["footManager", "ctaManager"]) el(id).href = mg;
 }
 
+// catalog.json — единый источник данных (его же читает Telegram-бот);
+// встроенные выше данные остаются fallback-ом, если файл недоступен
+async function loadCatalog() {
+  try {
+    const r = await fetch("catalog.json");
+    if (!r.ok) return;
+    const c = await r.json();
+    if (c.day) MODES.day = c.day;
+    if (c.night) MODES.night = c.night;
+    if (Array.isArray(c.guides)) { GUIDES.length = 0; GUIDES.push(...c.guides); }
+  } catch (_) { /* fallback на встроенные данные */ }
+}
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
@@ -189,6 +202,7 @@ function renderCart() {
   // почта нужна, если в корзине есть цифровой гайд
   const hasGuide = entries.some((en) => findItem(en.id).guide);
   el("cartEmail").hidden = !hasGuide;
+  el("cartPay").hidden = !has;
 }
 function openCart() { renderCart(); el("cartDrawer").hidden = false; }
 
@@ -207,6 +221,15 @@ try { el("emailInput").value = localStorage.getItem("tt-email") || ""; } catch (
 el("emailInput").addEventListener("input", () => {
   try { localStorage.setItem("tt-email", el("emailInput").value.trim()); } catch (_) {}
 });
+// способ оплаты: один активный, по умолчанию карта
+let payMethod = "Карта / СБП";
+el("payList").addEventListener("click", (e) => {
+  const a = e.target.closest("[data-pay]");
+  if (!a) return;
+  payMethod = a.dataset.pay;
+  el("payList").querySelectorAll(".addon").forEach((x) => x.classList.toggle("on", x === a));
+});
+
 el("cartCheckout").addEventListener("click", () => {
   const entries = cart.filter((en) => findItem(en.id));
   const total = entries.reduce((s, en) => s + entryPrice(en), 0);
@@ -218,7 +241,8 @@ el("cartCheckout").addEventListener("click", () => {
       const p = entryPrice(en);
       return `• ${it.t} — ${p === 0 ? "бесплатно" : money(p) + " ₽"}${en.disc ? ` (пакет −${en.disc}%)` : ""}`;
     }).join("\n") +
-    `\nИтого: ${money(total)} ₽`;
+    `\nИтого: ${money(total)} ₽` +
+    `\nОплата: ${payMethod}`;
   if (hasGuide) text += `\nПочта для гайдов: ${email || "(не указана)"}`;
   if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
   const mg = tme(cfg.managerUsername);
@@ -516,6 +540,6 @@ el("askForm").addEventListener("submit", (e) => {
 
 // ---------- boot ----------
 const startMode = (() => { const h = new Date().getHours(); return h >= 7 && h < 19 ? "day" : "night"; })();
-loadConfig().then(() => render(startMode));
 render(startMode);
+Promise.all([loadConfig(), loadCatalog()]).then(() => render(startMode));
 saveCart();
