@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-mode="night">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,52 +8,183 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='84'>∞</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,800&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="glyphfield" aria-hidden="true"></canvas>
+  <canvas id="glyphrain" aria-hidden="true"></canvas>
 
-  <div class="wrap">
-    <header class="site-head">
-      <button class="cart" id="cartBtn" aria-label="Корзина">
-        🛒<span class="cart-count" id="cartCount" hidden>0</span>
-      </button>
-      <div class="logo" aria-label="T&T Studio">
-        <span>T</span><span class="inf">∞</span><span>T</span>
-        <span class="logo-word">STUDIO</span>
+  <header class="nav">
+    <nav class="nav-links pill nav-single">
+      <a class="nav-logo-inline" href="#top">T<span class="inf">∞</span>T&nbsp;STUDIO</a>
+      <a href="../sale.html">Скидки</a>
+      <a href="../guides.html">Гайды</a>
+      <button class="cart" id="cartBtn" aria-label="Корзина">🛒<span class="cart-count" id="cartCount" hidden>0</span></button>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="promo" id="promo" aria-label="Акции">
+      <div class="promo-slider">
+        <button class="promo-arrow" id="promoPrev" aria-label="Предыдущая акция">‹</button>
+        <div class="promo-track" id="promoTrack"></div>
+        <button class="promo-arrow" id="promoNext" aria-label="Следующая акция">›</button>
       </div>
-    </header>
+      <div class="promo-dots" id="promoDots"></div>
+    </section>
 
-    <div class="switch" role="tablist" aria-label="Товары или услуги">
-      <button class="switch-half" id="halfGoods" role="tab" aria-selected="false">
-        <span class="kj">昼</span> ТОВАРЫ
-      </button>
-      <button class="switch-half" id="halfServices" role="tab" aria-selected="true">
-        <span class="kj">夜</span> УСЛУГИ
-      </button>
-    </div>
+    <section class="catalog" id="catalog">
+      <h2 id="catTitle">Каталог</h2>
+      <p class="section-lead" id="stageLead">Товары мастерской и услуги под ключ.</p>
 
-    <main class="stage">
-      <div class="stage-head">
-        <p class="eyebrow"><span class="kj" id="eyebrowKj">道</span>
-          <span class="tag" id="eyebrowTag">РАЗРАБОТКА</span></p>
-        <h1 id="stageTitle">Технологии,<br>что работают<br>на бизнес</h1>
-        <p class="lead" id="stageLead">Telegram-боты, AI-ассистенты, автоматизация и веб-платформы под ключ.</p>
+      <div class="switch" role="tablist" aria-label="Товары или услуги">
+        <button class="switch-half" id="halfGoods" role="tab" aria-selected="false">Товары</button>
+        <span class="switch-thumb" id="switchThumb" aria-hidden="true"></span>
+        <button class="switch-half" id="halfServices" role="tab" aria-selected="true">Услуги</button>
       </div>
+
+      <p class="eyebrow"><span class="dot"></span><span id="eyebrowTag">РАЗРАБОТКА</span></p>
 
       <div class="cards" id="cards"></div>
-    </main>
+    </section>
 
-    <footer class="site-foot">
-      <div class="logo small"><span>T</span><span class="inf">∞</span><span>T</span><span class="logo-word">STUDIO</span></div>
-      <nav class="foot-links">
-        <a id="footChannel" href="#" target="_blank" rel="noopener">Telegram-канал</a>
-        <a id="footManager" href="#" target="_blank" rel="noopener">Написать нам</a>
-      </nav>
-    </footer>
+    <section class="philosophy">
+      <h2>Суть в каждой детали</h2>
+      <p class="section-lead">Инструменты не должны требовать вашего внимания — они должны работать на вас.</p>
+      <div class="phil-rows">
+        <div class="phil-row pill-soft">
+          <span class="phil-ico">匠</span>
+          <div>
+            <h3>Ремесло вместо конвейера</h3>
+            <p>Каждая вещь в «Товарах» сделана или отобрана вручную — кожа, техника, детали с характером.</p>
+          </div>
+        </div>
+        <div class="phil-row pill-soft">
+          <span class="phil-ico">道</span>
+          <div>
+            <h3>Решение вместо шаблона</h3>
+            <p>Каждая услуга в «Разработке» собирается под задачу клиента — со сроком и ценой до старта.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <span class="hero-glyph">∞</span>
+        <p class="hero-panel-caption"><em>Мастерская × Разработка</em></p>
+      </div>
+    </section>
+
+    <section class="assistant" id="assistant">
+      <div class="assistant-panel">
+        <p class="eyebrow"><span class="dot green"></span>T&amp;T АССИСТЕНТ</p>
+        <p class="assistant-quote">«Расскажите, что вам нужно — предложу решение, срок и цену.»</p>
+        <form class="ask" id="askForm">
+          <input class="ask-input" id="askInput" type="text" placeholder="Например: нужен бот для записи клиентов…" autocomplete="off">
+          <button class="btn-raised small" type="submit">Спросить</button>
+        </form>
+        <p class="ask-hint" id="askHint" hidden>Вопрос скопирован — вставьте его в чат Telegram.</p>
+      </div>
+    </section>
+
+    <section class="compare">
+      <h2>Почему T&amp;T Studio</h2>
+      <div class="table-panel">
+        <table>
+          <thead>
+            <tr><th>Критерий</th><th>Обычный подрядчик</th><th class="hl">T&amp;T Studio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Подход</td><td>Шаблонные решения</td><td class="hl">Под задачу клиента</td></tr>
+            <tr><td>Сроки</td><td>Месяцы и переносы</td><td class="hl">8–25 дней, фиксируются до старта</td></tr>
+            <tr><td>Общение</td><td>Через менеджеров</td><td class="hl">Напрямую с разработчиком</td></tr>
+            <tr><td>Результат</td><td>Сдал и забыл</td><td class="hl">Поддержка после запуска</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Начните свой проект</h2>
+      <p class="section-lead">Идея заслуживает исполнения. Напишите — обсудим задачу и срок в тот же день.</p>
+      <a class="btn-raised" id="ctaManager" href="#" target="_blank" rel="noopener">Обсудить проект</a>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="foot-logo">T<span class="inf">∞</span>T&nbsp;STUDIO</div>
+    <nav class="foot-links">
+      <a id="footChannel" href="#" target="_blank" rel="noopener">Telegram-канал</a>
+      <a id="footManager" href="#" target="_blank" rel="noopener">Написать нам</a>
+    </nav>
+    <p class="foot-note">Мастерская и разработка. Тихо, точно, в срок.</p>
+  </footer>
+
+  <div class="overlay" id="productModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <button class="modal-close" id="pmClose" aria-label="Закрыть">✕</button>
+      <div class="modal-media"><span class="modal-kj" id="pmKj"></span><span class="media-well big"><span class="media-emoji" id="pmEmoji"></span></span></div>
+      <p class="eyebrow left"><span class="dot"></span><span id="pmTag"></span></p>
+      <h3 class="modal-title" id="pmTitle"></h3>
+      <p class="card-meta" id="pmMeta"></p>
+      <p class="modal-desc" id="pmDesc"></p>
+      <div class="addons" id="pmAddons" hidden>
+        <p class="addons-title">Соберите пакет — вместе дешевле:</p>
+        <div class="addons-list" id="pmAddonsList"></div>
+        <p class="addons-note" id="pmAddonsNote" hidden>Пакет из 3+ позиций — скидка 10% на всё ✓</p>
+      </div>
+      <div class="modal-price" id="pmPrice"></div>
+      <div class="promo-code" id="pmPromo" hidden>
+        <span class="promo-code-label">Промокод по акции:</span>
+        <button class="promo-code-value" id="pmPromoCode" title="Нажмите, чтобы скопировать"></button>
+        <span class="promo-code-hint" id="pmPromoHint">нажмите — скопируется</span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-raised small" id="pmAdd">В корзину</button>
+        <a class="btn-raised small" id="pmOrder" href="#" target="_blank" rel="noopener">Заказать</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="cartDrawer" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <button class="modal-close" id="cartClose" aria-label="Закрыть">✕</button>
+      <p class="eyebrow left"><span class="dot green"></span>КОРЗИНА</p>
+      <h3 class="modal-title" id="cartTitle">Ваш заказ</h3>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-total" id="cartTotal" hidden>
+        <span>Итого:</span><b id="cartSum"></b>
+      </div>
+      <p class="cart-empty" id="cartEmpty">Корзина пока пуста — добавьте товары кнопкой «+»</p>
+
+      <div class="cart-offers" id="cartOffers">
+        <p class="addons-title">Ещё предложения:</p>
+        <div class="addons-list" id="cartOffersList"></div>
+      </div>
+
+      <div class="cart-email" id="cartEmail" hidden>
+        <label class="addons-title" for="emailInput">Куда отправить гайды:</label>
+        <input class="ask-input" id="emailInput" type="email" placeholder="ваша почта" autocomplete="email">
+      </div>
+
+      <div class="cart-pay" id="cartPay" hidden>
+        <p class="addons-title">Как удобнее оплатить:</p>
+        <div class="addons-list" id="payList">
+          <div class="addon pay on" data-pay="Карта / СБП"><span class="addon-check">✓</span><span class="addon-name">💳 Карта / СБП</span></div>
+          <div class="addon pay" data-pay="Криптовалюта (USDT)"><span class="addon-check">✓</span><span class="addon-name">₿ Криптовалюта (USDT)</span></div>
+          <div class="addon pay" data-pay="Обсудить с менеджером"><span class="addon-check">✓</span><span class="addon-name">💬 Обсудить с менеджером</span></div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-raised small" id="cartClear" hidden>Очистить</button>
+        <button class="btn-raised small" id="cartCheckout" hidden>Оформить в Telegram</button>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
+  <script src="glyphs.js"></script>
 </body>
 </html>
