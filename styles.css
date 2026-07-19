@@ -95,6 +95,50 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .hero-glyph { font-size: 110px; color: #c6c9d0; font-weight: 300; line-height: 1; }
 .hero-panel-caption { font-size: 22px; color: #6d717a; font-style: italic; }
 
+/* ---------- promo slider ---------- */
+.promo { padding: 10px 0 30px; }
+.promo-slider { display: flex; align-items: stretch; gap: 16px; }
+.promo-arrow {
+  align-self: center; flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%; border: 0;
+  cursor: pointer; background: var(--panel); box-shadow: var(--raise-sm);
+  font-size: 24px; color: var(--text); line-height: 1;
+}
+.promo-arrow:active { box-shadow: var(--inset); }
+.promo-track { flex: 1; overflow: hidden; border-radius: 40px; }
+.promo-strip { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+.promo-slide {
+  flex: 0 0 100%; box-sizing: border-box; min-height: 240px;
+  background: linear-gradient(145deg, #e9ebee, #dfe1e6); box-shadow: var(--raise);
+  border-radius: 40px; padding: 40px 48px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+}
+.promo-kj {
+  position: absolute; right: -10px; bottom: -50px; font-size: 220px; line-height: 1;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; font-weight: 600;
+  color: rgba(90, 96, 108, .06); user-select: none; pointer-events: none;
+}
+.promo-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.promo-badge {
+  padding: 8px 16px; border-radius: 999px; background: var(--bg-deep); box-shadow: var(--inset);
+  font-size: 11px; font-weight: 800; letter-spacing: .2em; color: #6d717a;
+}
+.promo-when { font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--muted); }
+.promo-when b { color: var(--text); font-weight: 800; }
+.promo-title { font-size: clamp(22px, 3.4vw, 34px); font-weight: 800; letter-spacing: -.01em; }
+.promo-text { max-width: 560px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.promo-cta {
+  margin-top: 6px; align-self: flex-start; padding: 13px 26px; border-radius: 999px;
+  background: var(--panel); box-shadow: var(--raise-sm);
+  font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+}
+.promo-cta:active { box-shadow: var(--inset); }
+.promo-dots { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
+.promo-dot {
+  width: 12px; height: 12px; border-radius: 50%; border: 0; cursor: pointer; padding: 0;
+  background: var(--bg-deep); box-shadow: var(--inset); transition: background .25s;
+}
+.promo-dot[aria-current="true"] { background: #9ba0aa; }
+
 /* ---------- sections ---------- */
 section { padding: 70px 0; }
 h2 {
@@ -241,4 +285,7 @@ thead th.hl { background: rgba(255, 255, 255, .35); }
   .hero-panel { min-height: 240px; }
   th, td { padding: 14px 12px; font-size: 13px; }
   .assistant-panel { padding: 32px 22px; }
+  .promo-arrow { display: none; }        /* на мобильном листается свайпом и точками */
+  .promo-slide { padding: 28px 24px; min-height: 200px; border-radius: 28px; }
+  .promo-track { border-radius: 28px; }
 }

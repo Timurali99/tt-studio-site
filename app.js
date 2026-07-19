@@ -118,6 +118,67 @@ document.querySelectorAll("[data-mode-link]").forEach((a) => {
   a.addEventListener("click", () => render(a.dataset.modeLink));
 });
 
+// ---------- акции: листаемый баннер ----------
+// Тексты и даты правятся в promos.json без деплоя кода.
+(async () => {
+  let promos = [];
+  try {
+    const r = await fetch("promos.json");
+    if (r.ok) promos = await r.json();
+  } catch (_) { /* нет promos.json — секция скроется */ }
+  const section = document.getElementById("promo");
+  if (!promos.length) { section.hidden = true; return; }
+
+  const track = el("promoTrack"), dots = el("promoDots");
+  const strip = document.createElement("div");
+  strip.className = "promo-strip";
+  strip.innerHTML = promos.map((p) => `
+    <article class="promo-slide">
+      <span class="promo-kj" aria-hidden="true">${p.kj || "令"}</span>
+      <div class="promo-top">
+        <span class="promo-badge">${escapeHtml(p.badge || "АКЦИЯ")}</span>
+        <span class="promo-when">${escapeHtml(p.days || "")} · <b>${escapeHtml(p.dates || "")}</b></span>
+      </div>
+      <h3 class="promo-title">${escapeHtml(p.title)}</h3>
+      <p class="promo-text">${escapeHtml(p.text || "")}</p>
+      <a class="promo-cta" href="#catalog" data-mode-link="${p.mode || "day"}">${escapeHtml(p.cta || "Подробнее")}</a>
+    </article>`).join("");
+  track.appendChild(strip);
+
+  dots.innerHTML = promos.map((_, i) =>
+    `<button class="promo-dot" data-i="${i}" aria-label="Акция ${i + 1}"></button>`).join("");
+
+  let cur = 0, timer = null;
+  const show = (i) => {
+    cur = (i + promos.length) % promos.length;
+    strip.style.transform = `translateX(-${cur * 100}%)`;
+    dots.querySelectorAll(".promo-dot").forEach((d, k) =>
+      d.setAttribute("aria-current", String(k === cur)));
+  };
+  const auto = () => { clearInterval(timer); timer = setInterval(() => show(cur + 1), 7000); };
+
+  el("promoPrev").addEventListener("click", () => { show(cur - 1); auto(); });
+  el("promoNext").addEventListener("click", () => { show(cur + 1); auto(); });
+  dots.addEventListener("click", (e) => {
+    const d = e.target.closest(".promo-dot");
+    if (d) { show(+d.dataset.i); auto(); }
+  });
+  strip.querySelectorAll("[data-mode-link]").forEach((a) =>
+    a.addEventListener("click", () => render(a.dataset.modeLink)));
+
+  // свайп на мобильном
+  let x0 = null;
+  track.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { show(cur + (dx < 0 ? 1 : -1)); auto(); }
+    x0 = null;
+  }, { passive: true });
+
+  show(0); auto();
+})();
+
 // ---------- assistant ----------
 el("askForm").addEventListener("submit", (e) => {
   e.preventDefault();
