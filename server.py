@@ -8,7 +8,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*a, directory=ROOT, **kw)
 
     def end_headers(self):
-        self.send_header("Cache-Control", "public, max-age=300")
+        # no-cache => браузер каждый раз ревалидирует (Last-Modified/304) — обновления видны сразу
+        self.send_header("Cache-Control", "no-cache")
         super().end_headers()
 
 if __name__ == "__main__":
